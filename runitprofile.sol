@@ -4,8 +4,8 @@ contract Ownable {
   address public owner;
 
 
-  event OwnershipRenounced(address indexed previousOwner);
-  event OwnershipTransferred(
+    event OwnershipRenounced(address indexed previousOwner);
+    event OwnershipTransferred(
     address indexed previousOwner,
     address indexed newOwner
   );
@@ -74,6 +74,12 @@ string private nationality;
 
 // Soul can be Athlete, Fan, Sponsor, Organizer, Content generator, Partner .. many roles at same or differing times
 string public rolecodes;  // A/F/S/O/C/P
+string private profilehederafileid;
+string private profiledataipfshash;
+
+
+
+
 
 // demo, behavioral, interests
 // can be kept on a tiny cost hedera file or pinned to IPFS for PoC / pre-production
@@ -103,7 +109,7 @@ address public runitaccountid;
 
 address public platformaddress;
 
-bool public kycapproved;           //  set true or false - after 3rd prty plugin.
+bool public kycapproved;           //  set true or false - after 3rd praty plugin/ or in App KYC - driv lic pic or other TBD
 
 
 // Sponsor exposure measure 0 - 10 0= none, 3 low, 5 medium, 10 high  to maximize rewards.
@@ -116,9 +122,9 @@ uint256 private runittokenbal;
 
 
 
-  constructor(string _fname, string _lname, string _nickname, uint256 _phone, string _nationality, address _platformaddress) public {
+  constructor(string _fname, string _lname, string _nickname, uint256 _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash, address _platformaddress) public {
 
-// Run.it account is same as their hedera public key/assigned Account
+// Run.it account is a hedera public key/assigned Account assigned at time of onboarding.
 // impersonation is IMPOSSIBLE if friends aware of the public key and Run.it account# for this Soul
 
     runitaccountid = msg.sender;
@@ -129,6 +135,10 @@ uint256 private runittokenbal;
     nickname = _nickname;
     phone = _phone;
     nationality = _nationality;
+    rolecodes = _rolecodes;
+
+    profilehederafileid = _profilehederafileid;
+    profiledataipfshash = _profiledataipfshash;
 
     kycapproved = true;
 
@@ -276,12 +286,12 @@ uint256 private runittokenbal;
 
     selfdestruct(this);
 
-
  }
 
 
 
 }
+
 
 
 library SafeMath {
