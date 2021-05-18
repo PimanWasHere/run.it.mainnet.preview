@@ -12,7 +12,8 @@ pragma solidity ^0.4.23;
 
 
       Only the DOO, the Owner can mint more coins AND OR Burn to the zero address and thus reduce the total supply
-
+      But in this case for objective of finite value-appreciation, if you notice the constructor below you will see
+      that Mint and Burn permissions are denied - and marked as finished, upon deploy.
 
 
 
