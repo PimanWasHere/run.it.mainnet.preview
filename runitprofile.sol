@@ -72,6 +72,9 @@ string private gender;
 uint256 private phone;
 string private nationality;
 
+// Soul can be Athlete, Fan, Sponsor, Organizer, Content generator, Partner .. many roles at same or differing times
+string public rolecodes;  // A/F/S/O/C/P
+
 // demo, behavioral, interests
 // can be kept on a tiny cost hedera file or pinned to IPFS for PoC / pre-production
 // hedera files, like SCs are on Hedera to ABFT math defined level of security. - the highest known.
@@ -85,7 +88,7 @@ string private interest2;
 string private interest3;
 
 
-// openness preferences- so JOYN can  use to MATCH not to SHARE.
+// openness preferences- so RUN.it can  use to MATCH not to SHARE.
 
 bool public demographic;
 boon public behavioral;
@@ -265,7 +268,6 @@ uint256 private runittokenbal;
 
     }
 
-  // getters openness levels.. TO BE DONE
 
 
   function removeprofile() public onlyOwner{
