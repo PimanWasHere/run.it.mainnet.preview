@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 /*
-
+*********** THIS IS FOR 0.8 .. HEDERA ONLY SUPPORTS 0.5.9 ! EVM SOLC version
 
       For Full ownership of Run.it Entity.
 
