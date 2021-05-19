@@ -97,7 +97,7 @@ string private interest3;
 // openness preferences- so RUN.it can  use to MATCH not to SHARE.
 
 bool public demographic;
-boon public behavioral;
+boolean public behavioral;
 bool public interests;
 
 uint256 public sponsorslevel;
