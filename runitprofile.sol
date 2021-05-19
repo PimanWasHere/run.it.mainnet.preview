@@ -223,7 +223,7 @@ uint256 private runittokenbal;
     return interest3;
   }
 
-// only JOYN can see these - for matching purposes IF they have profile openness permission - TBD on degree of/ granularity
+// only Run.it can see these - for matching purposes IF they have profile openness permission - TBD on degree of/ granularity
 // this will a re-write for an array of interest.. more interests more gas it will cost user to maintain - micro cents!
 // this will also apply to profile getter methods for MvP later on .. for demo and  behaviorial
 
