@@ -73,7 +73,7 @@ uint256 private phone;
 string private nationality;
 
 // Soul can be Athlete, Fan, Sponsor, Organizer, Content generator, Partner .. many roles at same or differing times
-string public rolecodes;  // A/F/S/O/C/P
+string private rolecodes;  // A/F/S/O/C/P
 string private profilehederafileid;
 string private profiledataipfshash;
 
