@@ -68,7 +68,7 @@ contract runitprofile is Ownable {
 string private fname;
 string private lname;
 string private nickname;
-string private gender;
+string private gender;  // remove - not necessary
 uint256 private phone;
 string private nationality;
 
