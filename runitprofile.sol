@@ -71,9 +71,10 @@ string private nickname;
 string private gender;  // remove - not necessary
 uint256 private phone;
 string private nationality;
+string private rolecode;
 
-// Soul can be Athlete, Fan, Sponsor, Organizer, Content generator, Partner .. many roles at same or differing times
-string private rolecodes;  // A/F/S/O/C/P
+// rolecode permitted values P/F/S/C/B/R/D   R=sponsor - for duplicate and ease of install.
+
 string private profilehederafileid;
 string private profiledataipfshash;
 
