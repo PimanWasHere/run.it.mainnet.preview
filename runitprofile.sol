@@ -98,7 +98,7 @@ string private interest3;
 // openness preferences- so RUN.it can  use to MATCH not to SHARE.
 
 bool public demographic;
-boolean public behavioral;
+bool public behavioral;
 bool public interests;
 
 uint256 public sponsorslevel;
@@ -123,7 +123,7 @@ uint256 private runittokenbal;
 
 
 
-  constructor(string _fname, string _lname, string _nickname, uint256 _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash, address _platformaddress) public {
+  constructor(string _fname, string _lname, string _nickname, uint256 _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash) public {
 
 // Run.it account is a hedera public key/assigned Account assigned at time of onboarding.
 // impersonation is IMPOSSIBLE if friends aware of the public key and Run.it account# for this Soul
