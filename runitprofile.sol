@@ -68,15 +68,15 @@ contract runitprofile is Ownable {
 string private fname;
 string private lname;
 string private nickname;
-string private gender;  // remove - not necessary
 string private phone;
 string private nationality;
 string private rolecode;
-
 // rolecode permitted values P/F/S/C/B/R/D   R=sponsor - for duplicate and ease of install.
-
-string private profilehederafileid;
-string private profiledataipfshash;
+address private runitaccountid;
+uint256 private runitbal;  // updated from Run token SC when inquiry refresh _isApprovedOrOwner
+string private hederafileid;
+string private dataipfshash;
+address private platformaddress;
 
 
 
@@ -94,36 +94,22 @@ string private interest1;
 string private interest2;
 string private interest3;
 
+bool private demographic;
+bool private behavioral;
+bool private interests;
 
-// openness preferences- so RUN.it can  use to MATCH not to SHARE.
-
-bool public demographic;
-bool public behavioral;
-bool public interests;
-
-uint256 public sponsorslevel;
-uint256 public grpsponsorslevel;
-
-//  etc.. more core details as model fleshes out.
-
-address public runitaccountid;
-
-address public platformaddress;
-
-bool public kycapproved;           //  set true or false - after 3rd praty plugin/ or in App KYC - driv lic pic or other TBD
+uint256 private sponsorslevel;
+uint256 private grpsponsorslevel;
+bool private kycapproved;           //  set true or false - after 3rd praty plugin/ or in App KYC - driv lic pic or other TBD
 
 
 // Sponsor exposure measure 0 - 10 0= none, 3 low, 5 medium, 10 high  to maximize rewards.
 
 
-// current until refreshed by call to Run.it token contract
-
-uint256 private runittokenbal;
 
 
 
-
-  constructor(string _fname, string _lname, string _nickname, string _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash) public {
+  constructor(string _fname, string _lname, string _nickname, string _phone, string _nationality, string _rolecode, address _aacountid, uint256 _initialrunbal, string _hederafileid, string _dataipfshash, address _platformaddress) public {
 
 // Run.it account is a hedera public key/assigned Account assigned at time of onboarding.
 // impersonation is IMPOSSIBLE if friends aware of the public key and Run.it account# for this Soul
@@ -136,16 +122,16 @@ uint256 private runittokenbal;
     nickname = _nickname;
     phone = _phone;
     nationality = _nationality;
-    rolecodes = _rolecodes;
+    rolecode = _rolecode;
+    runitaccountid = _aacountid;
+    runitbal = _initialrunbal;
+    hederafileid = _hederafileid;
+    dataipfshash = _dataipfshash;
 
-    profilehederafileid = _profilehederafileid;
-    profiledataipfshash = _profiledataipfshash;
-
-    kycapproved = true;
+    kycapproved = false;
 
 
   }
-
 
 
 // Events broadcast to ledger as public but anonymous receipt, if needs be.
@@ -168,12 +154,14 @@ uint256 private runittokenbal;
     );
 
 
-// custom Modifiers
+// custom Modifier for Owner OR Platform - Run.it
 
-  modifier onlyrunitandpermission() {
-    require((sponsorslevel > 0 || grpsponsorslevel > 0) && msg.sender == platformaddress);
+  modifier onlyOwnerorrunit() {
+    require((msg.sender == platformaddress) || (msg.sender == owner));
     _;
   }
+
+
 
     // getters for Owner only!
 
@@ -194,7 +182,7 @@ uint256 private runittokenbal;
   }
 
 
-  function getphone() view onlyOwner public returns(uint256) {
+  function getphone() view onlyOwner public returns(string) {
 
     return phone;
   }
@@ -204,6 +192,36 @@ uint256 private runittokenbal;
 
     return nationality;
   }
+
+// only platform and Owner can see the roles - needed by DApp to custom the dashboard
+
+
+
+function getrolecode() view onlyOwnerorrunit public returns(string) {
+
+  return rolecode;
+}
+
+function getrunaccountid() view onlyOwnerorrunit public returns(address) {
+
+  return runitaccountid;
+}
+
+// in case Soul forgets their Runit account id. ie the hedera fileid.
+function gethederafileid() view onlyOwnerorrunit public returns(string) {
+
+  return hederafileid;
+}
+
+function getdataipfshash() view onlyOwner public returns(string) {
+
+  return dataipfshash;
+}
+
+
+
+
+
 
 // only owner can view these
 
@@ -224,47 +242,46 @@ uint256 private runittokenbal;
     return interest3;
   }
 
-// only Run.it can see these - for matching purposes IF they have profile openness permission - TBD on degree of/ granularity
+// Run.it OR orfile Owner can see these - for matching purposes IF they have profile openness permission - TBD on degree of/ granularity
 // this will a re-write for an array of interest.. more interests more gas it will cost user to maintain - micro cents!
 // this will also apply to profile getter methods for MvP later on .. for demo and  behaviorial
 
-    function runitgetinterest1() view onlyrunitandpermission public returns(string) {
+    function runitgetinterest1() view onlyOwnerorrunit public returns(string) {
 
       return interest1;
     }
 
 
-    function runitgetinterest2() view onlyrunitandpermission public returns(string) {
+    function runitgetinterest2() view onlyOwnerorrunit public returns(string) {
 
       return interest2;
     }
 
 
-    function runitgetinterest3() view onlyrunitandpermission public returns(string) {
+    function runitgetinterest3() view onlyOwnerorrunit public returns(string) {
 
       return interest3;
     }
 
 
- // update profile by Soul only. ie contract owner.
 
-  function updateprofile (string _fname, string _lname, string _nickname, uint256 _phone, string _nationality)  public  onlyOwner{
+ // update profile by Soul ONLY ie OnlyOwner.
+
+  function updateprofile (string _fname, string _lname, string _nickname, string _phone, string _nationality, string _rolecode)  public  onlyOwner{
 
     fname = _fname;
     lname = _lname;
     nickname = _nickname;
     phone = _phone;
     nationality = _nationality;
+    rolecode = _rolecode;
 
   }
 
-  // ditto TBD
 
 
     function updateinterests(string _interest1, string _interest2, string _interest3, bool _demo, bool _behav, bool _inter, uint256 _sponsorslevel, uint256 _grpsponsorslevel) public onlyOwner{
 
-        // limited for this purpose - expanded as a hedera encrypted bytcode file later.
-        // code is interpreted in the DApp
 
       interest1 = _interest1;
       interest2 = _interest2;
