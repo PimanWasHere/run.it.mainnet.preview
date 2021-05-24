@@ -69,7 +69,7 @@ string private fname;
 string private lname;
 string private nickname;
 string private gender;  // remove - not necessary
-uint256 private phone;
+string private phone;
 string private nationality;
 string private rolecode;
 
@@ -123,7 +123,7 @@ uint256 private runittokenbal;
 
 
 
-  constructor(string _fname, string _lname, string _nickname, uint256 _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash) public {
+  constructor(string _fname, string _lname, string _nickname, string _phone, string _nationality, string _rolecodes, string _profilehederafileid, string _profiledataipfshash) public {
 
 // Run.it account is a hedera public key/assigned Account assigned at time of onboarding.
 // impersonation is IMPOSSIBLE if friends aware of the public key and Run.it account# for this Soul
