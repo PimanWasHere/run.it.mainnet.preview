@@ -72,9 +72,9 @@ string private phone;
 string private nationality;
 string private rolecode;
 // rolecode permitted values P/F/S/C/B/R/D   R=sponsor - for duplicate and ease of install.
-address private runitaccountid;
+address private runitaccountid; // this is the Run.it accountid that holds HBARs and holds RUN tokens in the ERC20
 uint256 private runitbal;  // updated from Run token SC when inquiry refresh _isApprovedOrOwner
-string private hederafileid;
+string private hederafileid;    // this is the Run.it accountid in Users terms (holds account/keys,pwrdhash,profile scc addr)
 string private dataipfshash;
 address private platformaddress;
 
@@ -275,6 +275,15 @@ function getdataipfshash() view onlyOwner public returns(string) {
     phone = _phone;
     nationality = _nationality;
     rolecode = _rolecode;
+
+  }
+
+ // used to update the profile because the profile SC contractID is stored in the Run.it fileID(ieaccount) But
+ // the profile also is to hold the run.it account (hedera fileid).. chick & egg. So this method below is called after the File create in the DApp
+
+  function updaterunitaccountid(string _createdrunitfileid) public onlyOwner {
+
+  hederafileid = _createdrunitfileid;
 
   }
 
