@@ -94,13 +94,17 @@ string private interest1;
 string private interest2;
 string private interest3;
 
-bool private demographic;
-bool private behavioral;
-bool private interests;
+// the following are public so platform can see the openness OR not of the Owner, as permissions for the platform and Sponsors to
+// see the data owners decisions ie so Data owner canb get RUN token rewards
+// - but only Contract OnlyOwner can update.
 
-uint256 private sponsorslevel;
-uint256 private grpsponsorslevel;
-bool private kycapproved;           //  set true or false - after 3rd praty plugin/ or in App KYC - driv lic pic or other TBD
+bool public demographic;
+bool public behavioral;
+bool public interests;
+
+uint256 public sponsorslevel;
+uint256 public grpsponsorslevel;
+bool public kycapproved;           //  set true or false - after 3rd praty plugin/ or in App KYC - driv lic pic or other TBD
 
 
 // Sponsor exposure measure 0 - 10 0= none, 3 low, 5 medium, 10 high  to maximize rewards.
@@ -223,7 +227,7 @@ function getdataipfshash() view onlyOwner public returns(string) {
 
 
 
-// only owner can view these
+// only owner can view AND update these
 
   function getinterest1() view onlyOwner public returns(string) {
 
@@ -262,6 +266,9 @@ function getdataipfshash() view onlyOwner public returns(string) {
 
       return interest3;
     }
+
+
+
 
 
 
