@@ -97,7 +97,7 @@ string private interest3;
 // the following are public so platform can see the openness OR not of the Owner, as permissions for the platform and Sponsors to
 // see the data owners decisions ie so Data owner canb get RUN token rewards
 // - but only Contract OnlyOwner can update.
-
+ 
 bool public demographic;
 bool public behavioral;
 bool public interests;
