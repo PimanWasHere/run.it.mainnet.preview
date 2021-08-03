@@ -97,7 +97,7 @@ string private interest3;
 // the following are public so platform can see the openness OR not of the Owner, as permissions for the platform and Sponsors to
 // see the data owners decisions ie so Data owner canb get RUN token rewards
 // - but only Contract OnlyOwner can update.
- 
+
 bool public demographic;
 bool public behavioral;
 bool public interests;
@@ -118,7 +118,6 @@ bool public kycapproved;           //  set true or false - after 3rd praty plugi
 // Run.it account is a hedera public key/assigned Account assigned at time of onboarding.
 // impersonation is IMPOSSIBLE if friends aware of the public key and Run.it account# for this Soul
 
-    runitaccountid = msg.sender;
     platformaddress = _platformaddress;
 
     fname = _fname;
