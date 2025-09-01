@@ -385,7 +385,7 @@ async def deploy_contract(request: ContractDeployRequest, current_user: dict = D
             # Parse constructor parameters (simplified)
             contract_create.setConstructorParameters(params)
         
-        contract_create_frozen = contract_create.freeze()
+        contract_create_frozen = contract_create.freezeWith(hedera_client)
         contract_signed = contract_create_frozen.sign(operator_key)
         contract_submit = await contract_signed.execute(hedera_client)
         contract_receipt = await contract_submit.getReceipt(hedera_client)
