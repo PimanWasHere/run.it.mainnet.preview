@@ -21,7 +21,7 @@ def setup_credentials():
     try:
         # Convert mnemonic to private key
         mnemonic = Mnemonic.fromString(mnemonic_phrase)
-        private_key = mnemonic.toStandardEd25519PrivateKey()
+        private_key = mnemonic.toStandardEd25519PrivateKey("", 0)
         
         print(f"✅ Private key generated: {str(private_key)}")
         
