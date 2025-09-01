@@ -5,7 +5,7 @@ python-multipart==0.0.6
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-dotenv==1.0.0
-hedera-sdk-py==2.36.0
+hedera-sdk-py==2.50.0
 pydantic==2.5.0
 pydantic-settings==2.1.0
 httpx==0.25.2
