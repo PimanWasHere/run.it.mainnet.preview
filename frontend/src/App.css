@@ -217,7 +217,7 @@
 
 /* Tooltip styles */
 .tooltip {
-  @apply absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip-invisible;
+  @apply absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 invisible;
   transition: opacity 0.3s;
 }
 
