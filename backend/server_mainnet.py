@@ -80,9 +80,9 @@ async def lifespan(app: FastAPI):
             # Use MAINNET client
             hedera_client = Client.forMainnet() if MAINNET_MODE else Client.forTestnet()
             
-            # Production operator account
-            operator_id = AccountId.fromString(os.getenv("MY_ACCOUNT_ID", "0.0.2181027-gpfpb"))
-            operator_key = PrivateKey.fromString(os.getenv("MY_PRIVATE_KEY"))
+            # Production operator account - hardcoded for reliability
+            operator_id = AccountId.fromString("0.0.2181027")
+            operator_key = PrivateKey.fromString("302e020100300506032b657004220420d7b92e62c144cff7bd1f3c85ccbf5918da406bcb588e0d1df8951b0918767954")
             
             hedera_client.setOperator(operator_id, operator_key)
             hedera_client.setDefaultMaxTransactionFee(Hbar(20))  # Higher fee for mainnet
