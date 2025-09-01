@@ -14,6 +14,10 @@ import logging
 from typing import Optional, List, Dict, Any
 import uuid
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Hedera imports
 try:
