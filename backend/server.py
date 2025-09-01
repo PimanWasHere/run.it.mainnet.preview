@@ -612,9 +612,9 @@ async def get_account_balance(current_user: dict = Depends(get_current_user)):
         balance = balance_query.execute(hedera_client)
         
         return {
-            "hbar_balance": str(balance.hbars),
+            "hbar_balance": balance.hbars.toString(),
             "token_balances": dict(balance.tokens) if hasattr(balance, 'tokens') and balance.tokens else {},
-            "account_id": str(operator_id)
+            "account_id": operator_id.toString()
         }
         
     except Exception as e:
