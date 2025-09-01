@@ -47,7 +47,7 @@ def setup_credentials():
 SECRET_KEY=run_it_platform_secret_key_2024_hedera_integration
 HEDERA_NETWORK=testnet
 MY_ACCOUNT_ID={account_id_str}
-MY_PRIVATE_KEY={str(private_key)}
+MY_PRIVATE_KEY={private_key_der}
 """
         
         with open('/app/backend/.env', 'w') as f:
