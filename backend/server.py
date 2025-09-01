@@ -609,7 +609,7 @@ async def get_account_balance(current_user: dict = Depends(get_current_user)):
     
     try:
         balance_query = AccountBalanceQuery().setAccountId(operator_id)
-        balance = await balance_query.execute(hedera_client)
+        balance = balance_query.execute(hedera_client)
         
         return {
             "hbar_balance": str(balance.hbars),
