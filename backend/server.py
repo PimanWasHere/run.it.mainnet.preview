@@ -513,7 +513,7 @@ async def transfer_tokens(request: TokenTransferRequest, current_user: dict = De
             .addTokenTransfer(token_id, to_account, request.amount) \
             .setMaxTransactionFee(Hbar(5))
         
-        transfer_tx_frozen = transfer_tx.freeze()
+        transfer_tx_frozen = transfer_tx.freezeWith(hedera_client)
         transfer_signed = transfer_tx_frozen.sign(operator_key)
         transfer_submit = await transfer_signed.execute(hedera_client)
         transfer_receipt = await transfer_submit.getReceipt(hedera_client)
