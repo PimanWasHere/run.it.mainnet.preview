@@ -454,7 +454,8 @@ async def create_token(request: TokenCreateRequest, current_user: dict = Depends
                 .setSupplyKey(supply_key) \
                 .setMaxTransactionFee(Hbar(30))
         
-        token_signed = token_create.sign(operator_key)
+        token_create_frozen = token_create.freeze()
+        token_signed = token_create_frozen.sign(operator_key)
         token_submit = await token_signed.execute(hedera_client)
         token_receipt = await token_submit.getReceipt(hedera_client)
         
