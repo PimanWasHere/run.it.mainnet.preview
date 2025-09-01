@@ -212,7 +212,8 @@ async def create_hedera_account():
             .setInitialBalance(Hbar(10)) \
             .setMaxTransactionFee(Hbar(20))
         
-        account_signed = account_create.sign(operator_key)
+        account_create_frozen = account_create.freeze()
+        account_signed = account_create_frozen.sign(operator_key)
         account_submit = await account_signed.execute(hedera_client)
         account_receipt = await account_submit.getReceipt(hedera_client)
         
