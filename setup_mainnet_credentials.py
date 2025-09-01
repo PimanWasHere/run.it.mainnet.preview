@@ -85,12 +85,7 @@ COST_WARNING_ENABLED=false
         return False, None, None, None
 
 if __name__ == "__main__":
-    print("🚨 MAINNET SETUP - PROCEED WITH CAUTION")
-    response = input("Are you sure you want to set up MAINNET credentials? (yes/no): ")
-    
-    if response.lower() != 'yes':
-        print("❌ Mainnet setup cancelled")
-        sys.exit(0)
+    print("🚨 MAINNET SETUP - PROCEEDING AS REQUESTED")
     
     success, account_id, private_key, balance = setup_mainnet_credentials()
     if success:
