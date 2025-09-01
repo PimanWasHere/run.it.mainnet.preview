@@ -565,7 +565,7 @@ async def mint_nft(request: NFTMintRequest, current_user: dict = Depends(get_cur
             .setMetadata([metadata_bytes]) \
             .setMaxTransactionFee(Hbar(20))
         
-        mint_tx_frozen = mint_tx.freeze()
+        mint_tx_frozen = mint_tx.freezeWith(hedera_client)
         mint_signed = mint_tx_frozen.sign(supply_key)
         mint_submit = await mint_signed.execute(hedera_client)
         mint_receipt = await mint_submit.getReceipt(hedera_client)
