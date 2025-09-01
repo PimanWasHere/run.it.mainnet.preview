@@ -609,11 +609,11 @@ async def get_account_balance(current_user: dict = Depends(get_current_user)):
     
     try:
         balance_query = AccountBalanceQuery().setAccountId(operator_id)
-        balance = balance_query.execute(hedera_client)
+        balance = await balance_query.execute(hedera_client)
         
         return {
             "hbar_balance": str(balance.hbars),
-            "token_balances": {str(k): v for k, v in balance.tokenBalances.items()},
+            "token_balances": {str(k): v for k, v in balance.tokens.items()} if hasattr(balance, 'tokens') else {},
             "account_id": str(operator_id)
         }
         
