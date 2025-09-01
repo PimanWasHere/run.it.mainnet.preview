@@ -11,7 +11,7 @@ def setup_mainnet_credentials():
     """Convert mnemonic to mainnet credentials and test connection"""
     
     # MAINNET credentials - REAL MONEY
-    account_id_str = "0.0.2181027"  # User provided mainnet account
+    account_id_str = "0.0.2181027-gpfpb"  # User provided mainnet account with checksum
     mnemonic_phrase = "good siege egg plunge egg tongue parent beach apart notice huge rib lazy patient code shallow hotel either rug diary mean noodle voice marble"
     
     print("🚨 SETTING UP HEDERA **MAINNET** CREDENTIALS - REAL MONEY TRANSACTIONS")
