@@ -368,7 +368,8 @@ async def deploy_contract(request: ContractDeployRequest, current_user: dict = D
             .setContents(bytecode) \
             .setMaxTransactionFee(Hbar(2))
         
-        file_signed = file_create.sign(operator_key)
+        file_create_frozen = file_create.freeze()
+        file_signed = file_create_frozen.sign(operator_key)
         file_submit = await file_signed.execute(hedera_client)
         file_receipt = await file_submit.getReceipt(hedera_client)
         
