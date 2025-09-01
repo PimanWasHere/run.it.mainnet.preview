@@ -67,9 +67,9 @@ async def lifespan(app: FastAPI):
             # Use demo testnet credentials
             hedera_client = Client.forTestnet()
             
-            # Demo operator account (testnet)
-            operator_id = AccountId.fromString("0.0.4827036")  # Demo testnet account
-            operator_key = PrivateKey.fromString("302e020100300506032b6570042204204a68a0b8d09e0e5c26c8bb9b2b6a4c8a5e5d5c4b3a2918171615141312111009")
+            # Use environment variables for credentials
+            operator_id = AccountId.fromString(os.getenv("MY_ACCOUNT_ID", "0.0.2181027"))
+            operator_key = PrivateKey.fromString(os.getenv("MY_PRIVATE_KEY"))
             
             hedera_client.setOperator(operator_id, operator_key)
             hedera_client.setDefaultMaxTransactionFee(Hbar(10))
