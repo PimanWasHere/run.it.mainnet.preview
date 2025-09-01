@@ -23,7 +23,9 @@ def setup_credentials():
         mnemonic = Mnemonic.fromString(mnemonic_phrase)
         private_key = mnemonic.toStandardEd25519PrivateKey("", 0)
         
-        print(f"✅ Private key generated: {str(private_key)}")
+        # Get the DER string representation
+        private_key_der = private_key.toStringDER()
+        print(f"✅ Private key generated: {private_key_der}")
         
         # Test connection
         client = Client.forTestnet()
